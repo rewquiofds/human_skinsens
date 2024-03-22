@@ -75,38 +75,6 @@ class SkinSensPipe():
         y = data.iloc[:, 3]
         return x, y
 
-    @staticmethod
-    def resampling(xtrain, ytrain, resampling, n_jobs=None):
-        if resampling == "SMOTE":
-            smote = SMOTE(
-                sampling_strategy='auto',  # auto自动判断哪个是少数类，在二分类中，auto等价于minority
-                random_state=42,
-                k_neighbors=5,
-                n_jobs=n_jobs,
-            )
-            xtrain_resampled, ytrain_resampled = smote.fit_resample(xtrain, ytrain)
-            return xtrain_resampled, ytrain_resampled
-
-        elif resampling == "ADASYN":
-            adasyn = ADASYN(
-                sampling_strategy='auto',  # auto自动判断哪个是少数类，在二分类中，auto等价于minority
-                random_state=42,
-                n_neighbors=5,
-                n_jobs=n_jobs,
-            )
-            xtrain_resampled, ytrain_resampled = adasyn.fit_resample(xtrain, ytrain)
-            return xtrain_resampled, ytrain_resampled
-
-        elif resampling == "RandomUnderSampler":
-            rus = RandomUnderSampler(random_state=42)
-            xtrain_resampled, ytrain_resampled = rus.fit_resample(xtrain, ytrain)
-            return xtrain_resampled, ytrain_resampled
-
-        elif resampling == "ClusterCentroids":
-            cc = ClusterCentroids(random_state=42)
-            xtrain_resampled, ytrain_resampled = cc.fit_resample(xtrain, ytrain)
-            return xtrain_resampled, ytrain_resampled
-
     def tune_pipeline(self, init_pipe, parameters, param_distributions, xtrain, ytrain):
         model = init_pipe['model']
         if type(model) in [StackingClassifier, VotingClassifier]:
