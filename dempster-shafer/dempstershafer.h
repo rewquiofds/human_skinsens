@@ -1,5 +1,6 @@
 #ifndef DEMPSTERSHAFER_H
 #define DEMPSTERSHAFER_H
+// borrowed from
 /*
  * Dempster-Shafer Library for Evidence-Theory
  * Thilo Michael, Jeffrey Jedele
