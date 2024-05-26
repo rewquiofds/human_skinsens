@@ -98,7 +98,7 @@ def main(dataset):
             ('model', model)
         ])
         # if "Descriptors" in fp_desc:
-        #     init_pipe.steps.insert(-1, ('scaler', StandardScaler()))  # 问ChatGPT以分子指纹作为输入的时候需不需要StandardScaler()
+        #     init_pipe.steps.insert(-1, ('scaler', StandardScaler()))  # 以分子指纹作为输入的时候需不需要StandardScaler()
         cv = StratifiedKFold(n_splits=configs.n_splits, shuffle=True, random_state=42)
         # cv = RepeatedStratifiedKFold(n_splits=configs.n_splits, n_repeats=5, random_state=42)
         SensPipe = SkinSensPipe(
